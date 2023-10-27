@@ -1,5 +1,6 @@
 var url = "https://jsonplaceholder.typicode.com/posts";
-var output = document.getElementById("output");
+
+// var output = document.getElementById("output");
 
 var xhr = new XMLHttpRequest();
 
@@ -30,3 +31,25 @@ xhr.onreadystatechange = function () {
 xhr.send();
 
 //form du lieu
+let form_data = new FormData();
+
+//them data vao form
+form_data.append("username", "Poo Phoong");
+form_data.append("password", "abc123");
+
+//cai dat time toi da cho response sau khi da gui Request theo millisecond
+xhr.timeout = 30000; //30s
+
+//ham xu ly khi timeout xay ra
+xhr.ontimeout = function () {
+  //logic
+  console.log(">> Du lieu dang bi gian doan.");
+};
+
+/**
+ * can thiep vao Request Header
+ * dung cu phap: xhr.setRequestHeader('Key','Value');
+ */
+
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("tokenAuth", "abcxyz123");
